@@ -1,0 +1,24 @@
+@use 'variables' as variables;
+
+//Grid1
+@mixin mask-gradient-horizontal($start: 20%, $end: 80%) {
+  overflow: hidden;
+  -webkit-mask: linear-gradient(90deg, transparent, white $start, white $end, transparent);
+  mask: linear-gradient(90deg, transparent, white $start, white $end, transparent);
+}
+
+//Cartes
+@mixin card($width, $height, $radius: 12px, $bg: variables.$card-bg) {
+  width: $width;
+  height: $height;
+  background: $bg;
+  border-radius: $radius;
+}
+
+//Scroll
+@mixin scroller($gap: 1rem) {
+  padding-block: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: $gap;
+}

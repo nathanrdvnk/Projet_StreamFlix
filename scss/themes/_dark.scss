@@ -1,0 +1,10 @@
+@use '../utils/variables' as variables;
+
+html {
+  color-scheme: dark;
+}
+
+body {
+  background-color: variables.$background-dark;
+  color: variables.$text-color;
+}
