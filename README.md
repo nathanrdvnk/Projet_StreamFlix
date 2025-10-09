@@ -1,7 +1,7 @@
 # Projet_StreamFlix
 Efrei StreamFlix
 
-## Authors
+## Author
 - [@nathanrdvnk](https://github.com/nathanrdvnk)
 
 ## Overview
@@ -15,7 +15,6 @@ This project includes [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) 
 ```bash
     cd Projet_SteamFlix
     npm install
-    npm install sass --save-dev  
 ```
 
 ## Modify
