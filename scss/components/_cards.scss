@@ -146,3 +146,58 @@
         }
     }
 }
+
+
+
+#popupOverlay {
+  position: fixed;       /* Position fixe pour le maintenir à l'écran */
+  top: 0;                /* Positionner en haut de l'écran */
+  left: 0;               /* Positionner à gauche */
+  width: 100vw;          /* Largeur de l'écran */
+  height: 100vh;         /* Hauteur de l'écran */
+  background: rgba(0, 0, 0, 0.6); /* Fond semi-transparent */
+  display: none !important;
+  justify-content: center; /* Centrer le contenu horizontalement */
+  align-items: center;   /* Centrer le contenu verticalement */
+  z-index: 1000;         /* Assurer que l'overlay est au-dessus du reste */
+  transition: opacity 0.3s ease; /* Optionnel, ajout de transition pour l'animation d'apparition */
+}
+
+#popupContent {
+  background: #444;      /* Fond de l'overlay */
+  padding: 30px;
+  border-radius: 10px;
+  max-width: 600px;       /* Largeur maximale de la fenêtre */
+  width: 90%;             /* Largeur relative de la fenêtre */
+  color: white;
+  position: relative;
+  max-height: 90vh;       /* Hauteur maximale */
+  overflow-y: auto;       /* Ajouter une barre de défilement si le contenu est trop long */
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  opacity: 0;             /* Commence avec une opacité à 0 (invisible) */
+  transition: opacity 0.3s ease; /* Animation pour rendre l'overlay visible */
+}
+
+#popupOverlay.show {
+  display: flex;         /* Affiche l'overlay avec un display:flex */
+  opacity: 1;            /* Change l'opacité à 1 pour rendre visible */
+}
+
+#popupIframe {
+  width: 100%;
+  height: 315px;
+  border: none;
+  border-radius: 8px;
+}
+
+#closeBtn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}

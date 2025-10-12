@@ -4,17 +4,11 @@
 @use 'components/cards';
 
 @use 'layout/header';
-@use 'layout/footer';
-
-@use 'pages/home';
-@use 'pages/about';
 
 @use 'themes/dark';
 
 @use 'utils/variables';
 @use 'utils/mixins';
-
-@use 'vendors/bootstrap';
 
 //Animation
 @keyframes scroll {

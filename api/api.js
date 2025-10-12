@@ -30,6 +30,9 @@ function displayTrendingMovies(movies) {
         img.src = movie.poster_path ? IMAGE_BASE_URL + movie.poster_path : 'https://via.placeholder.com/200x300?text=Pas+de+photo';
         img.alt = movie.title || 'Film tendance';
         div.appendChild(img);
+        div.addEventListener('click', () => {
+            openPopupWithInfo(movie);
+        });
         grid.appendChild(div);
     });
 }
@@ -62,6 +65,9 @@ function displayTrendingSeries(series) {
         img.src = serie.poster_path ? IMAGE_BASE_URL + serie.poster_path : 'https://via.placeholder.com/200x300?text=Pas+de+photo';
         img.alt = serie.name || 'Série tendance';
         div.appendChild(img);
+        div.addEventListener('click', () => {
+            openPopupWithInfo(serie);
+        });
         grid.appendChild(div);
     });
 }
@@ -130,4 +136,97 @@ document.addEventListener('DOMContentLoaded', () => {
     getTrendingMovies();
     getTrendingSeries();
     displayTopTrendingMovieTrailer();
+});
+
+
+
+
+async function openPopupWithInfo(item) {
+    const overlay = document.getElementById('popupOverlay');
+    const text = document.getElementById('popupText');
+    const iframe = document.getElementById('popupIframe');
+    const addToWishlistBtn = document.getElementById('addToWishlistBtn');
+
+    // Détecter si c'est un film ou une série
+    const isMovie = item.title !== undefined;
+    const isSerie = item.name !== undefined;
+
+    let title = isMovie ? item.title : item.name;
+    let releaseDate = item.release_date || item.first_air_date || 'Inconnue';
+    let overview = item.overview || 'Pas de description disponible.';
+    let genres = item.genres ? item.genres.map(genre => genre.name).join(', ') : 'Inconnu';
+    let duration = isMovie ? (item.runtime ? `${item.runtime} min` : 'Durée inconnue') :
+        (item.episode_run_time ? `${item.episode_run_time[0]} min` : 'Durée inconnue');
+
+    if (addToWishlistBtn) {
+    addToWishlistBtn.addEventListener('click', () => {
+        addToWishlistBtn.classList.add('added');
+
+        // Construire un objet
+        const wishlistItem = {
+            id: item.id,
+            title: item.title || item.name,
+            image: item.poster_path,
+            type: item.title ? 'movie' : 'series'
+        };
+
+        // Récupérer la wishlist existante
+        let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+        const exists = wishlist.some(el => el.id === wishlistItem.id && el.type === wishlistItem.type);
+
+        if (!exists) {
+            wishlist.push(wishlistItem);
+            localStorage.setItem('wishlist', JSON.stringify(wishlist));
+        }
+    });
+}
+
+
+    text.innerHTML = `
+    <h2>${title}</h2>
+    <p>${overview}</p>
+    <p><strong>Date de sortie :</strong> ${releaseDate}</p>
+    <p><strong>Genre(s) :</strong> ${genres}</p>
+    <p><strong>Durée :</strong> ${duration}</p>
+  `;
+
+    if (isMovie) {
+        // Pour les films, afficher l'iframe avec la vidéo
+        const trailerUrl = await getTrailerUrl(item.id);
+        iframe.src = trailerUrl || '';
+        iframe.style.display = 'block';
+    } else {
+        // Pour les séries, ne pas afficher l'iframe
+        iframe.src = '';
+        iframe.style.display = 'none';
+    }
+
+    overlay.classList.add('show');
+
+    setTimeout(() => {
+        document.querySelector('#popupContent').style.opacity = 1;
+    }, 10);
+}
+document.addEventListener('DOMContentLoaded', () => {
+    const closeBtn = document.getElementById('closeBtn');
+    const overlay = document.getElementById('popupOverlay');
+    const popupContent = document.getElementById('popupContent');
+
+    if (closeBtn && overlay) {
+        closeBtn.addEventListener('click', () => {
+            overlay.classList.remove('show');
+            setTimeout(() => {
+                popupContent.style.opacity = 0;
+            }, 300);
+        });
+
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) {
+                overlay.classList.remove('show');
+                setTimeout(() => {
+                    popupContent.style.opacity = 0;
+                }, 300);
+            }
+        });
+    }
 });

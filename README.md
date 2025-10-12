@@ -23,3 +23,5 @@ To watch and compile SASS files on changes
 ```bash
     npm run sass
 ```
+## Details
+Project Realised Mainly for 21:9 (3440x1440)
