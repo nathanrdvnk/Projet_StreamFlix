@@ -1,0 +1,22 @@
+@use '../utils/mixins';
+
+.btn {
+  @include mixins.button-size;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.btn img {
+  width: 100%;
+}
+.button-container {
+  margin-top: 10px;
+  margin-bottom: 0px;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+}
+

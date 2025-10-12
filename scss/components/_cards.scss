@@ -109,6 +109,9 @@
             @include mixins.card(280px, 500px, 4px);
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
         }
+        .iframe1 {
+            @include mixins.card(280px, 500px, 4px);
+        }
     }
 
     @media (min-width: 1000px) and (max-width: 1999px) {
@@ -122,6 +125,9 @@
             @include mixins.card(200px, 400px, 4px);
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
         }
+        .iframe1 {
+            @include mixins.card(200px, 400px, 4px);
+        }
     }
 
     @media (min-width: 768px) and (max-width: 1000px) {
@@ -134,6 +140,9 @@
         .case3 {
             @include mixins.card(100px, 300px, 4px);
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+        }
+        .iframe1 {
+            @include mixins.card(100px, 300px, 4px);
         }
     }
 }

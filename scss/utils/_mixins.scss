@@ -22,3 +22,9 @@
   flex-wrap: wrap;
   gap: $gap;
 }
+
+@mixin button-size {
+  width: 32px;
+  height: 32px;
+  display: block;
+}
