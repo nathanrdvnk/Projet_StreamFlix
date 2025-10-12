@@ -13,7 +13,7 @@ This project includes [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) 
 
 ### Install npm
 ```bash
-    cd Projet_SteamFlix
+    cd Projet_SteamFlix-main
     npm install
 ```
 
