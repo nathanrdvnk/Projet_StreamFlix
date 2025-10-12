@@ -2,7 +2,9 @@ const API_KEY = '08a341931ab5f5dcee467baeb4a68c76';
 const BASE_URL = 'https://api.themoviedb.org/3';
 const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w500';
 
+// -----------------------------
 // Afficher les films tendances
+// -----------------------------
 async function getTrendingMovies(maxPages = 10) {
     const trendingMovies = [];
     try {
@@ -34,7 +36,9 @@ function displayTrendingMovies(movies) {
     });
 }
 
+// ------------------------------
 // Afficher les séries tendances
+// ------------------------------
 async function getTrendingSeries(maxPages = 10) {
     const trendingSeries = [];
     try {
@@ -66,7 +70,9 @@ function displayTrendingSeries(series) {
     });
 }
 
+// ----------------------------------------
 // Récupérer le film le plus populaire
+// ----------------------------------------
 async function getTopTrendingMovie() {
     try {
         const response = await fetch(`${BASE_URL}/trending/movie/week?api_key=${API_KEY}&language=fr-FR&page=1`);
@@ -79,7 +85,9 @@ async function getTopTrendingMovie() {
     }
 }
 
+// -------------------------------------------------
 // Récupérer l'URL de la bande-annonce YouTube
+// -------------------------------------------------
 async function getTrailerUrl(movieId) {
     try {
         const response = await fetch(`${BASE_URL}/movie/${movieId}/videos?api_key=${API_KEY}&language=fr-FR`);
@@ -93,7 +101,9 @@ async function getTrailerUrl(movieId) {
     }
 }
 
+// --------------------------------------------
 // Afficher la bande-annonce du film populaire
+// --------------------------------------------
 async function displayTopTrendingMovieTrailer() {
     const movie = await getTopTrendingMovie();
     if (!movie) return;
@@ -127,9 +137,11 @@ async function displayTopTrendingMovieTrailer() {
     case3.appendChild(iframe);
 }
 
+// ------------------------
 // Lancement au chargement
+// ------------------------
 document.addEventListener('DOMContentLoaded', () => {
     getTrendingMovies();
     getTrendingSeries();
-    displayTopTrendingMovieTrailer();
+    displayTopTrendingMovieTrailer(); // Remplace displayRandom...
 });

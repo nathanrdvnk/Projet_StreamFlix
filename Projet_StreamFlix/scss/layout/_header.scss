@@ -1,0 +1,41 @@
+@use '../utils/variables' as variables;
+
+.header1 {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 60px;
+  background-color: rgba(20, 20, 20, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 2rem;
+  z-index: 1000;
+
+  .logo {
+    img {
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      height: 100px;
+      width: 100px;
+    }
+  }
+
+  .navbar {
+    display: flex;
+    gap: 1.5rem;
+    margin-left: -80px;
+
+    a {
+      color: variables.$text-color;
+      text-decoration: none;
+      font-weight: bold;
+
+      &:hover {
+        color: variables.$hover-color;
+      }
+    }
+  }
+}

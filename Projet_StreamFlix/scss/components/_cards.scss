@@ -1,0 +1,139 @@
+@use '../utils/mixins';
+@use '../utils/variables';
+
+// Cards N°1
+.container1 {
+    display: flex;
+    align-items: center;
+    width: var(--vw);
+    height: var(--vh);
+
+    &[data-animated="true"] {
+        @include mixins.mask-gradient-horizontal;
+
+        .scroller {
+            width: max-content;
+            flex-wrap: nowrap;
+            animation: scroll var(--_animation-duration, 40s) var(--_animation-direction, forwards) linear infinite;
+        }
+    }
+
+    &[data-direction="right"] {
+        --_animation-direction: reverse;
+    }
+
+    &[data-direction="left"] {
+        --_animation-direction: forwards;
+    }
+
+    &[data-speed="fast"] {
+        --_animation-duration: 20s;
+    }
+
+    &[data-speed="slow"] {
+        --_animation-duration: 60s;
+    }
+
+    .grid1 {
+        position: relative;
+        margin: 0;
+        padding-inline: 0;
+        list-style: none;
+
+
+        .case1 {
+            @include mixins.card(400px, 600px);
+
+            img {
+                width: 100%;
+                height: 100%;
+                border-radius: 12px;
+                cursor: pointer;
+            }
+        }
+    }
+
+    .scroller {
+        @include mixins.scroller(1rem);
+    }
+}
+
+// Cards N°2
+.container2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 0;
+    padding: 0;
+
+    .grid2 {
+        display: grid;
+        margin-top: calc(var(--vh) / 100);
+        margin-bottom: 60px;
+        grid-template-columns: repeat(5, auto);
+        gap: 1.5rem;
+
+        .case2 {
+            @include mixins.card(300px, 400px);
+            transition: all variables.$transition-duration ease;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 10px;
+                cursor: pointer;
+            }
+
+            &:hover {
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.6);
+                transform: translateY(-5px);
+            }
+        }
+    }
+}
+
+// Cards N°3
+.grid3 {
+    display: none;
+
+    @media (min-width: 2000px) {
+        display: block;
+        position: fixed;
+        bottom: 40px;
+        right: 30px;
+        z-index: 1000;
+
+        .case3 {
+            @include mixins.card(280px, 500px, 4px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+        }
+    }
+
+    @media (min-width: 1000px) and (max-width: 1999px) {
+        display: block;
+        position: fixed;
+        bottom: 40px;
+        right: 30px;
+        z-index: 1000;
+
+        .case3 {
+            @include mixins.card(200px, 400px, 4px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+        }
+    }
+
+    @media (min-width: 768px) and (max-width: 1000px) {
+        display: block;
+        position: fixed;
+        bottom: 40px;
+        right: 30px;
+        z-index: 1000;
+
+        .case3 {
+            @include mixins.card(100px, 300px, 4px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+        }
+    }
+}
